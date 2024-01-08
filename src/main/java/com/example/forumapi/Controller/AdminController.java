@@ -1,29 +1,30 @@
 package com.example.forumapi.Controller;
 
-import com.example.forumapi.entity.User;
-import com.example.forumapi.service.UserService;
+import com.example.forumapi.entity.Answer;
+import com.example.forumapi.entity.Question;
+import com.example.forumapi.service.AnswerService;
+import com.example.forumapi.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final UserService userService;
-    @GetMapping
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hey Admin");
+    private final QuestionService questionService;
+    private final AnswerService answerService;
+
+    @PostMapping("/postQuestion")
+    public ResponseEntity<Question> uploadQuestion(@RequestBody Question question){
+        return ResponseEntity.ok(questionService.upload(question, principal.getName()));
     }
 
-    @GetMapping("/getall")
-    public ResponseEntity<List<User>> users(){
-        return ResponseEntity.ok(userService.getAllUsers());
+    @PostMapping("/postAnswer")
+    public ResponseEntity<Answer> uploadAnswer(@RequestBody Answer answer){
+        return ResponseEntity.ok(answerService.upload(answer));
     }
+
 }

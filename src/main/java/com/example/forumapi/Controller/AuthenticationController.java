@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
-    @GetMapping("/forall")
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hey public");
-    }
-
     @PostMapping("/signup")
     public ResponseEntity<User> signup (@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signup(signUpRequest));
