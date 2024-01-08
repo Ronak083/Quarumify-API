@@ -1,4 +1,4 @@
-package com.example.groupapi.service.impl;
+package com.example.forumapi.service.impl;
 
 import com.example.forumapi.Dao.JwtAuthenticationResponse;
 import com.example.forumapi.Dao.SignUpRequest;

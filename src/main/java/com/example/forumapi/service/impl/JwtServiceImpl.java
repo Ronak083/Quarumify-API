@@ -1,4 +1,4 @@
-package com.example.groupapi.service.impl;
+package com.example.forumapi.service.impl;
 
 import com.example.forumapi.service.JwtService;
 import io.jsonwebtoken.Claims;

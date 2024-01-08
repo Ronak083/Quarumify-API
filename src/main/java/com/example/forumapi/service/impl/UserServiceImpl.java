@@ -1,4 +1,4 @@
-package com.example.groupapi.service.impl;
+package com.example.forumapi.service.impl;
 
 import com.example.forumapi.entity.User;
 import com.example.forumapi.repository.UserRepository;
