@@ -1,7 +1,13 @@
 package com.example.forumapi.service;
 
 import com.example.forumapi.entity.Answer;
+import com.example.forumapi.entity.Question;
+
+import java.util.List;
+
 
 public interface AnswerService {
-    Answer upload(Answer answer, String email);
+
+    List<Question> upload(Answer answer, long id);
+
 }

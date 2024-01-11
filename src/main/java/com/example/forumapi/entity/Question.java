@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,13 +18,9 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String question;
-
     private String Date;
 
-    @ManyToOne
-    private User user;
-
     @OneToMany
-    private Answer answer;
+    private List<Answer> answer;
 
 }

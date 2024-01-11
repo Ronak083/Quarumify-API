@@ -35,10 +35,11 @@ public class SecurityConnfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/api/auth/**")
+                .authorizeHttpRequests(request -> request.requestMatchers("/api/**")
                         .permitAll()
+                        /*
                         .requestMatchers("/api/admin/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers("/api/user/**").hasAuthority(Role.USER.name())
+                        .requestMatchers("/api/user/**").hasAuthority(Role.USER.name()) */
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

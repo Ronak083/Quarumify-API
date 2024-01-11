@@ -7,26 +7,34 @@ import com.example.forumapi.repository.QuestionRepository;
 import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.JwtService;
+import com.example.forumapi.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AnswerImpl implements AnswerService {
-    private final JwtService jwtService;
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
-    private final UserRepository userRepository;
 
     @Override
-    public Answer upload(Answer answer, String email) {
+    public List<Question> upload(Answer answer, long id) {
         Answer ans = new Answer();
         ans.setAnswer(answer.getAnswer());
         ans.setDate(answer.getDate());
-        ans.setUser(userRepository.findByUserByEmail(email));
-
-        return answerRepository.save(ans);
+        ans.setQId(id);        
+        addAnswer(ans, id);
+        answerRepository.save(ans);
+        return questionRepository.findAll();
     }
 
+    private void addAnswer(Answer ans, long id) {
+        Optional<Question> q = questionRepository.findById(id);
+        q.get().getAnswer().add(ans);
+    }
 
 }

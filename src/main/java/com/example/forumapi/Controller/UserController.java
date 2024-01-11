@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -20,13 +21,18 @@ public class UserController {
     private final AnswerService answerService;
 
     @PostMapping("/postQuestion")
-    public ResponseEntity<Question> uploadQuestion(@RequestBody Question question, Principal principal){
-        return ResponseEntity.ok(questionService.upload(question, principal.getName()));
+    public ResponseEntity<List<Question>> uploadQuestion(@RequestBody Question question){
+        return ResponseEntity.ok(questionService.upload(question));
     }
 
-    @PostMapping("/postAnswer")
-    public ResponseEntity<Answer> uploadAnswer(@RequestBody Answer answer){
-        return ResponseEntity.ok(answerService.upload(answer));
+    @PostMapping("/postAnswer/{qId}")
+    public ResponseEntity<List<Question>> uploadAnswer(@RequestBody Answer answer, @PathVariable String qId){
+        return ResponseEntity.ok(answerService.upload(answer, Long.parseLong(qId)));
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Question>> getQuestion(){
+        return ResponseEntity.ok(questionService.getQuestions());
     }
 
 }

@@ -19,7 +19,6 @@ public class Answer {
     private long id;
     private String answer;
     private String Date;
+    private long qId;
 
-    @ManyToOne
-    private User user;
 }
