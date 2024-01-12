@@ -23,6 +23,7 @@ public class QuestionImpl implements QuestionService {
         Question que = new Question();
         que.setQuestion(question.getQuestion());
         que.setDate(question.getDate());
+        que.setUsername(question.getUsername());
         answersList = new ArrayList<>();
         que.setAnswer(answersList);
         questionRepository.save(que);
@@ -48,7 +49,6 @@ public class QuestionImpl implements QuestionService {
     public List<Question> updateQuestion(Question que, long l) {
         Optional<Question> q = questionRepository.findById(l);
         q.get().setQuestion(que.getQuestion());
-        q.get().setDate(que.getDate());
         return questionRepository.findAll();
     }
 

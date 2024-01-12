@@ -20,5 +20,6 @@ public class Answer {
     private String answer;
     private String Date;
     private long qId;
+    private String username;
 
 }

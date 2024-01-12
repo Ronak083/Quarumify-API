@@ -1,12 +1,13 @@
 package com.example.forumapi.Controller;
 
+import com.example.forumapi.Dao.JwtAuthUserDetails;
 import com.example.forumapi.Dao.JwtAuthenticationResponse;
 import com.example.forumapi.Dao.SignUpRequest;
 import com.example.forumapi.Dao.SigninRequest;
 import com.example.forumapi.entity.Question;
 import com.example.forumapi.entity.User;
-import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.AuthenticationService;
+import com.example.forumapi.service.JwtService;
 import com.example.forumapi.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final QuestionService questionService;
+    private final JwtService jwtService;
 
     @PostMapping("/signup")
     public ResponseEntity<User> signup (@RequestBody SignUpRequest signUpRequest){
@@ -31,6 +33,12 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
         return ResponseEntity.ok(authenticationService.signin(signinRequest));
     }
+
+    @GetMapping("/userDetail")
+    public ResponseEntity<JwtAuthUserDetails> JwtUserDetails(@RequestBody String userToken){
+        return ResponseEntity.ok(jwtService.JwtUserDetails(userToken));
+    }
+
     @GetMapping("/")
     public ResponseEntity<List<Question>> getQuestion(){
         return ResponseEntity.ok(questionService.getQuestions());

@@ -26,7 +26,8 @@ public class AnswerImpl implements AnswerService {
         Answer ans = new Answer();
         ans.setAnswer(answer.getAnswer());
         ans.setDate(answer.getDate());
-        ans.setQId(id);        
+        ans.setQId(id);
+        ans.setUsername(answer.getUsername());
         addAnswer(ans, id);
         answerRepository.save(ans);
         return questionRepository.findAll();

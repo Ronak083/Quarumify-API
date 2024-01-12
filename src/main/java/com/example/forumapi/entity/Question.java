@@ -19,7 +19,7 @@ public class Question {
     private long id;
     private String question;
     private String Date;
-
+private String username;
     @OneToMany
     private List<Answer> answer;
 
