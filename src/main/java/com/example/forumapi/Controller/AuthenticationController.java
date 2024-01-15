@@ -36,7 +36,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/userDetail/{username}")
-    public ResponseEntity<User> getUserInfo(@PathVariable String username){
+    public ResponseEntity<JwtAuthUserDetails> getUserInfo(@PathVariable String username){
         return ResponseEntity.ok(userService.getUserInfo(username));
     }
 

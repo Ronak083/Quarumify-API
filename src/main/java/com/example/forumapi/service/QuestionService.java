@@ -10,5 +10,5 @@ public interface QuestionService {
 
     List<Question> deleteQuestion(long qid);
 
-    List<Question> updateQuestion(Question que, long l);
+    List<Question> updateQuestion(Question que, long id);
 }

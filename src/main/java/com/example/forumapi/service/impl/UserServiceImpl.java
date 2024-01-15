@@ -1,5 +1,6 @@
 package com.example.forumapi.service.impl;
 
+import com.example.forumapi.Dao.JwtAuthUserDetails;
 import com.example.forumapi.entity.Role;
 import com.example.forumapi.entity.User;
 import com.example.forumapi.config.ResourceNotExisted;
@@ -29,13 +30,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateToModerator(long id) {
+    public List<User> updateToModerator(long id) {
         User u = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("user",
                         "Id", id));
         u.setRole(Role.MODERATOR);
         userRepository.save(u);
-        return u;
+        return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> updateToUser(long id) {
+        User u = userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotExisted("user",
+                        "Id", id));
+        u.setRole(Role.USER);
+        userRepository.save(u);
+        return userRepository.findAll();
     }
 
     @Override
@@ -44,9 +55,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfo(String username) {
-        return userRepository.findUserByEmail(username);
+    public JwtAuthUserDetails getUserInfo(String username) {
+        User u = userRepository.findUserByEmail(username);
+        JwtAuthUserDetails detailObject = new JwtAuthUserDetails();
+        detailObject.setUsername(u.getEmail());
+        detailObject.setRole(u.getRole());
+        return detailObject;
     }
-
-
 }

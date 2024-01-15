@@ -23,6 +23,11 @@ public class AdminController {
     private final AnswerService answerService;
     private final UserService userService;
 
+    @DeleteMapping("/deleteQue/{id}")
+    public ResponseEntity<List<Question>> deleteQ(@PathVariable String id){
+        return  ResponseEntity.ok(questionService.deleteQuestion(Long.parseLong(id)));
+    }
+
     @PostMapping("/postQuestion")
     public ResponseEntity<List<Question>> uploadQuestion(@RequestBody Question question){
         return ResponseEntity.ok(questionService.upload(question));
@@ -42,8 +47,13 @@ public class AdminController {
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @PutMapping("/updateRole/{id}")
-    public ResponseEntity<User> updateRole(@PathVariable String id){
+    @PutMapping("/updateRoleToMOD/{id}")
+    public ResponseEntity<List<User>> updateRoleToMOD(@PathVariable String id){
         return ResponseEntity.ok(userService.updateToModerator(Long.parseLong(id)));
+    }
+
+    @PutMapping("/updateRoleToUSR/{id}")
+    public ResponseEntity<List<User>> updateRoleToUSR(@PathVariable String id){
+        return ResponseEntity.ok(userService.updateToUser(Long.parseLong(id)));
     }
 }

@@ -15,10 +15,7 @@ import java.util.List;
 public class ModeratorController {
     private final QuestionService questionService;
     private final AnswerService answerService;
-    @DeleteMapping("/deleteQue/{id}")
-    public ResponseEntity<List<Question>> deleteQ(@PathVariable String id){
-        return  ResponseEntity.ok(questionService.deleteQuestion(Long.parseLong(id)));
-    }
+
 
     @PutMapping("/updateQue/{id}")
     public ResponseEntity<List<Question>> updateQ(@RequestBody Question que, @PathVariable String id){

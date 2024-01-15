@@ -1,5 +1,6 @@
 package com.example.forumapi.service.impl;
 
+import com.example.forumapi.config.ResourceNotExisted;
 import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
 import com.example.forumapi.repository.AnswerRepository;
@@ -23,19 +24,19 @@ public class AnswerImpl implements AnswerService {
 
     @Override
     public List<Question> upload(Answer answer, long id) {
+
+        Question que = questionRepository.findById(id).orElseThrow(
+                () -> new ResourceNotExisted("Question Not exist",
+                        "Id", id));
+
         Answer ans = new Answer();
         ans.setAnswer(answer.getAnswer());
         ans.setDate(answer.getDate());
-        ans.setQId(id);
         ans.setUsername(answer.getUsername());
-        addAnswer(ans, id);
+        que.getAnswer().add(ans);
+        ans.setQId(id);
         answerRepository.save(ans);
         return questionRepository.findAll();
-    }
-
-    private void addAnswer(Answer ans, long id) {
-        Optional<Question> q = questionRepository.findById(id);
-        q.get().getAnswer().add(ans);
     }
 
 }
