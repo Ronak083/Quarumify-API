@@ -1,4 +1,5 @@
 package com.example.forumapi.entity;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class Question {
     private long id;
     private String question;
     private String Date;
-private String username;
+    private String username;
     @OneToMany
     private List<Answer> answer;
 

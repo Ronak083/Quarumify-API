@@ -26,8 +26,7 @@ public class AnswerImpl implements AnswerService {
     public List<Question> upload(Answer answer, long id) {
 
         Question que = questionRepository.findById(id).orElseThrow(
-                () -> new ResourceNotExisted("Question Not exist",
-                        "Id", id));
+                () -> new ResourceNotExisted("Question Not exist","Id", id));
 
         Answer ans = new Answer();
         ans.setAnswer(answer.getAnswer());
