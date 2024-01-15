@@ -37,9 +37,9 @@ public class SecurityConnfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/**")
                         .permitAll()
-                        /*
                         .requestMatchers("/api/admin/**").hasAuthority(Role.ADMIN.name())
-                        .requestMatchers("/api/user/**").hasAuthority(Role.USER.name()) */
+                        .requestMatchers("/api/moderator/**").hasAnyAuthority(Role.MODERATOR.name())
+                        .requestMatchers("/api/user/**").hasAuthority(Role.USER.name())
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

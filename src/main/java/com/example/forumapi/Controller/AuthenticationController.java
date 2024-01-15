@@ -9,6 +9,7 @@ import com.example.forumapi.entity.User;
 import com.example.forumapi.service.AuthenticationService;
 import com.example.forumapi.service.JwtService;
 import com.example.forumapi.service.QuestionService;
+import com.example.forumapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ import java.util.List;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final QuestionService questionService;
-    private final JwtService jwtService;
+    private final UserService userService;
 
     @PostMapping("/signup")
     public ResponseEntity<User> signup (@RequestBody SignUpRequest signUpRequest){
@@ -34,9 +35,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signin(signinRequest));
     }
 
-    @GetMapping("/userDetail")
-    public ResponseEntity<JwtAuthUserDetails> JwtUserDetails(@RequestBody String userToken){
-        return ResponseEntity.ok(jwtService.JwtUserDetails(userToken));
+    @GetMapping("/userDetail/{username}")
+    public ResponseEntity<User> getUserInfo(@PathVariable String username){
+        return ResponseEntity.ok(userService.getUserInfo(username));
     }
 
     @GetMapping("/")

@@ -4,11 +4,14 @@ import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
 import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.QuestionService;
+import com.example.forumapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.forumapi.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -18,6 +21,7 @@ public class AdminController {
 
     private final QuestionService questionService;
     private final AnswerService answerService;
+    private final UserService userService;
 
     @PostMapping("/postQuestion")
     public ResponseEntity<List<Question>> uploadQuestion(@RequestBody Question question){
@@ -33,14 +37,13 @@ public class AdminController {
     public ResponseEntity<List<Question>> getQuestion(){
         return ResponseEntity.ok(questionService.getQuestions());
     }
-
-    @DeleteMapping("/deleteQue/{id}")
-    public ResponseEntity<List<Question>> deleteQ(@PathVariable String id){
-        return  ResponseEntity.ok(questionService.deleteQuestion(Long.parseLong(id)));
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return ResponseEntity.ok(userService.getAll());
     }
 
-    @PutMapping("/updateQue/{id}")
-    public ResponseEntity<List<Question>> updateQ(@RequestBody Question que, @PathVariable String id){
-        return  ResponseEntity.ok(questionService.updateQuestion(que, Long.parseLong(id)));
+    @PutMapping("/updateRole/{id}")
+    public ResponseEntity<User> updateRole(@PathVariable String id){
+        return ResponseEntity.ok(userService.updateToModerator(Long.parseLong(id)));
     }
 }

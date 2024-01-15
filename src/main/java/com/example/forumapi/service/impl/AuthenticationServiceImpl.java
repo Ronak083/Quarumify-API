@@ -39,9 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signin(SigninRequest signinRequest) throws IllegalArgumentException{
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(), signinRequest.getPassword()));
         var user = userRepository.findByEmail(signinRequest.getEmail());
-
         var jwt = jwtService.generateToken(user);
-
 
         JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
         jwtAuthenticationResponse.setUsername(user.getUsername());

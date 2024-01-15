@@ -2,6 +2,7 @@ package com.example.forumapi.service.impl;
 
 import com.example.forumapi.Dao.JwtAuthUserDetails;
 import com.example.forumapi.Dao.JwtAuthenticationResponse;
+import com.example.forumapi.entity.Role;
 import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.JwtService;
 import io.jsonwebtoken.Claims;
@@ -38,7 +39,6 @@ public class JwtServiceImpl implements JwtService {
         return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
     }
 
-
     public String extractUserName(String token){
         return extractClaim(token, Claims::getSubject);
     }
@@ -51,16 +51,6 @@ public class JwtServiceImpl implements JwtService {
         final String username = extractUserName(token);
         return (username.equals(userDetails.getUsername()) &&  !isTokenExpired(token));
     }
-
-    @Override
-    public JwtAuthUserDetails JwtUserDetails(String userToken) {
-        JwtAuthUserDetails jwtUD = new JwtAuthUserDetails();
-        jwtUD.setUsername(extractUserName(userToken));
-        jwtUD.setUserRole(userRepository.findByEmail(jwtUD.getUsername()).);
-
-        return jwtUD;
-    }
-
 
     private boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());
