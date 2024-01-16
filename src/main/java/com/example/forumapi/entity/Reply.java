@@ -13,19 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "answerTable")
-public class Answer {
-
+@Table(name = "replyTable")
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    private String answer;
+    private String reply;
     private String Date;
-    private long qId;
+    private long aId;
     private String username;
-
-    @OneToMany
-    private List<Reply> replies;
-
 }

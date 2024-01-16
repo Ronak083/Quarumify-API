@@ -2,6 +2,7 @@ package com.example.forumapi.Controller;
 
 import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
+import com.example.forumapi.entity.Reply;
 import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.QuestionService;
 import com.example.forumapi.service.UserService;
@@ -28,16 +29,6 @@ public class AdminController {
         return  ResponseEntity.ok(questionService.deleteQuestion(Long.parseLong(id)));
     }
 
-    @PostMapping("/postQuestion")
-    public ResponseEntity<List<Question>> uploadQuestion(@RequestBody Question question){
-        return ResponseEntity.ok(questionService.upload(question));
-    }
-
-    @PostMapping("/postAnswer/{qId}")
-    public ResponseEntity<List<Question>> uploadAnswer(@RequestBody Answer answer, @PathVariable String qId){
-        return ResponseEntity.ok(answerService.upload(answer, Long.parseLong(qId)));
-    }
-
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok(userService.getAll());
@@ -52,4 +43,6 @@ public class AdminController {
     public ResponseEntity<List<User>> updateRoleToUSR(@PathVariable String id){
         return ResponseEntity.ok(userService.updateToUser(Long.parseLong(id)));
     }
+
+
 }
