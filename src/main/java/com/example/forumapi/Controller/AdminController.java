@@ -38,11 +38,6 @@ public class AdminController {
         return ResponseEntity.ok(answerService.upload(answer, Long.parseLong(qId)));
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Question>> getQuestion(){
-        return ResponseEntity.ok(questionService.getQuestions());
-    }
-
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok(userService.getAll());

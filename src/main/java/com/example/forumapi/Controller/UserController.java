@@ -29,10 +29,4 @@ public class UserController {
     public ResponseEntity<List<Question>> uploadAnswer(@RequestBody Answer answer, @PathVariable String qId){
         return ResponseEntity.ok(answerService.upload(answer, Long.parseLong(qId)));
     }
-
-    @GetMapping("/")
-    public ResponseEntity<List<Question>> getQuestion(){
-        return ResponseEntity.ok(questionService.getQuestions());
-    }
-
 }
