@@ -6,7 +6,6 @@ import com.example.forumapi.entity.Reply;
 
 import java.util.List;
 
-
 public interface AnswerService {
 
     List<Question> uploadAns(Answer answer, long id);

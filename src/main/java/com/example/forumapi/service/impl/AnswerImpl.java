@@ -7,17 +7,12 @@ import com.example.forumapi.entity.Reply;
 import com.example.forumapi.repository.AnswerRepository;
 import com.example.forumapi.repository.QuestionRepository;
 import com.example.forumapi.repository.ReplyRepository;
-import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.AnswerService;
-import com.example.forumapi.service.JwtService;
-import com.example.forumapi.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,5 +57,6 @@ public class AnswerImpl implements AnswerService {
         replyRepository.save(reply);
         return questionRepository.findAll();
     }
+
 
 }

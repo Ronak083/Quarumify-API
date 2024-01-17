@@ -1,6 +1,5 @@
 package com.example.forumapi.Controller;
 
-import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
 import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.QuestionService;
@@ -15,8 +14,6 @@ import java.util.List;
 @RequestMapping("/api/moderator")
 public class ModeratorController {
     private final QuestionService questionService;
-    private final AnswerService answerService;
-
     @PutMapping("/updateQue/{id}")
     public ResponseEntity<List<Question>> updateQ(@RequestBody Question que, @PathVariable String id){
         return  ResponseEntity.ok(questionService.updateQuestion(que, Long.parseLong(id)));
