@@ -1,8 +1,6 @@
 package com.example.forumapi.Controller;
 
-import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
-import com.example.forumapi.entity.Reply;
 import com.example.forumapi.service.AnswerService;
 import com.example.forumapi.service.QuestionService;
 import com.example.forumapi.service.UserService;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.forumapi.entity.User;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController

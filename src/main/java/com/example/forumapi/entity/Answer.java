@@ -27,5 +27,4 @@ public class Answer {
 
     @OneToMany
     private List<Reply> replies;
-
 }
