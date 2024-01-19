@@ -5,10 +5,12 @@ import com.example.forumapi.entity.Question;
 import java.util.List;
 
 public interface QuestionService {
-    List<Question> upload(Question question);
+    Question upload(Question question, long userID);
     List<Question> getQuestions();
 
-    List<Question> deleteQuestion(long qid);
+    String deleteQuestion(long qid);
 
-    List<Question> updateQuestion(Question que, long id);
+    Question updateQuestion(Question que, long questionID);
+
+    String deleteQuestionbyUser(long qID, long userID);
 }

@@ -20,10 +20,12 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String answer;
+    private String content;
     private String Date;
-    private long qId;
-    private String username;
+    private long questionId;
+
+    @ManyToOne
+    private User user;
 
     @OneToMany
     private List<Reply> replies;

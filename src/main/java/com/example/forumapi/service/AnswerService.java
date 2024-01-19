@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface AnswerService {
 
-    List<Question> uploadAns(Answer answer, long id);
-    List<Question> uploadRep(Reply reply, long id);
+    Answer uploadAns(Answer answer, long id, long userID);
+    Reply uploadRep(Reply reply, long id, long userID);
+
+    String deleteAnswerbyUser(long aid, long userID);
+    String deleteReplybyUser(long rid, long userID);
 }

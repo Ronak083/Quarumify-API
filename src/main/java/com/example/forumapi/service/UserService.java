@@ -1,6 +1,7 @@
 package com.example.forumapi.service;
 
 import com.example.forumapi.Dao.JwtAuthUserDetails;
+import com.example.forumapi.entity.Role;
 import com.example.forumapi.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -11,7 +12,10 @@ public interface UserService {
      UserDetailsService userDetailsService();
 
     List<User> getAll();
-    JwtAuthUserDetails getUserInfo(String email);
-    List<User> updateToModerator(long id);
-    List<User> updateToUser(long id);
+    JwtAuthUserDetails getUserInfo(String email, Role role);
+    User updateToModerator(long id);
+    User updateToUser(long id);
+    User getDetail(long userID);
+
+    User updateBio(User user, long id);
 }

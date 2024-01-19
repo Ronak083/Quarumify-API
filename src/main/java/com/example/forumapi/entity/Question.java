@@ -13,14 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "forumTable")
+@Table(name = "question_table")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String question;
+    private String content;
     private String Date;
-    private String username;
+    @ManyToOne
+    private User user;
     @OneToMany
     private List<Answer> answer;
 

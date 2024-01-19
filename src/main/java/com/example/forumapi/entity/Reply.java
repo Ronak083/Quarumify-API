@@ -18,8 +18,9 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String reply;
+    private String content;
     private String Date;
-    private long aId;
-    private String username;
+    private long answerId;
+    @ManyToOne
+    private User user;
 }
