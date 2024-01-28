@@ -1,9 +1,5 @@
 package com.example.forumapi.service.impl;
 
-import com.example.forumapi.Dao.JwtAuthUserDetails;
-import com.example.forumapi.Dao.JwtAuthenticationResponse;
-import com.example.forumapi.entity.Role;
-import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -55,6 +51,3 @@ public class JwtServiceImpl implements JwtService {
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 }
-
-
-

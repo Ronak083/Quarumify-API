@@ -7,11 +7,14 @@ import com.example.forumapi.entity.Reply;
 import com.example.forumapi.repository.AnswerRepository;
 import com.example.forumapi.repository.QuestionRepository;
 import com.example.forumapi.repository.ReplyRepository;
+import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,43 +23,85 @@ public class AnswerImpl implements AnswerService {
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
     private final ReplyRepository replyRepository;
+    private final UserRepository userRepository;
     List<Reply> replyList;
 
-    @Override
-    public List<Question> uploadAns(Answer answer, long id) {
-        Question que = questionRepository.findById(id).orElseThrow(
-                () -> new ResourceNotExisted("Question Not exist","Id", id));
+    public Answer uploadAns(Answer answer, long questionID, long userID) {
+        Question que = questionRepository.findById(questionID).orElseThrow(
+                () -> new ResourceNotExisted("Question Not exist","Id", questionID));
 
         Answer ans = new Answer();
-        ans.setAnswer(answer.getAnswer());
-        ans.setDate(answer.getDate());
-        ans.setUsername(answer.getUsername());
-        ans.setQId(id);
-
         replyList = new ArrayList<>();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        String dateFormat = formatter.format(date);
+
+        ans.setContent(answer.getContent());
+        ans.setDate(dateFormat);
+        ans.setUser(userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotExisted("User Not exist","Id", userID)));
+        ans.setQuestionId(questionID);
         ans.setReplies(replyList);
 
         que.getAnswer().add(ans);
-
         answerRepository.save(ans);
-        return questionRepository.findAll();
+
+        return ans;
     }
 
     @Override
-    public List<Question> uploadRep(Reply rep, long id) {
+    public Reply uploadRep(Reply rep, long answerID, long userID) {
 
-        Answer parentAnswer = answerRepository.findById(id).orElseThrow(
-                () -> new ResourceNotExisted("Answer Not exist","Id", id));
+        Answer parentAnswer = answerRepository.findById(answerID).orElseThrow(
+                () -> new ResourceNotExisted("Answer Not exist","Id", answerID));
 
         Reply reply = new Reply();
-        reply.setAId(id);
-        reply.setDate(rep.getDate());
-        reply.setReply(rep.getReply());
-        reply.setUsername(rep.getUsername());
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        String dateFormat = formatter.format(date);
+
+        reply.setAnswerId(answerID);
+        reply.setDate(dateFormat);
+        reply.setContent(rep.getContent());
+        reply.setUser(userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotExisted("User Not exist","Id", userID)));
+
         parentAnswer.getReplies().add(reply);
+
         replyRepository.save(reply);
-        return questionRepository.findAll();
+        return reply;
     }
 
+    @Override
+    public String deleteAnswerbyUser(long id, long userID) {
+        Answer ans = answerRepository.findById(id).orElseThrow(
+                () -> new ResourceNotExisted("answer Not exist",
+                        "Id", id));
 
+        Question parentQue = questionRepository.findById(ans.getQuestionId()).orElseThrow(
+                () -> new ResourceNotExisted("Question Not exist","Id", ans.getQuestionId()));
+        if(ans.getUser().getId() == userID) {
+            parentQue.getAnswer().remove(ans);
+            answerRepository.deleteById(ans.getId());
+            return "Answer Deleted Successfully by User";
+        }
+        return "User has Not access to delete this Answer";
+    }
+
+    @Override
+    public String deleteReplybyUser(long aID, long userID) {
+        Reply r = replyRepository.findById(aID).orElseThrow(
+                () -> new ResourceNotExisted("reply Not exist",
+                        "Id", aID));
+
+
+        Answer parentAnswer = answerRepository.findById(r.getAnswerId()).orElseThrow(
+                () -> new ResourceNotExisted("Answer Not exist","Id", r.getAnswerId()));
+        if(r.getUser().getId() == userID) {
+            parentAnswer.getReplies().remove(r);
+            replyRepository.deleteById(r.getId());
+            return "Reply Deleted Successfully by User";
+        }
+        return "User has Not access to delete this Reply";
+    }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class ModeratorController {
     private final QuestionService questionService;
     @PutMapping("/updateQue/{id}")
-    public ResponseEntity<List<Question>> updateQ(@RequestBody Question que, @PathVariable String id){
+    public ResponseEntity<Question> updateQ(@RequestBody Question que, @PathVariable String id){
         return  ResponseEntity.ok(questionService.updateQuestion(que, Long.parseLong(id)));
     }
 }

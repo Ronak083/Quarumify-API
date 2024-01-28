@@ -30,36 +30,55 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> updateToModerator(long id) {
-        User u = userRepository.findById(id).orElseThrow(
+    public User updateToModerator(long id) {
+        User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("user",
                         "Id", id));
-        u.setRole(Role.MODERATOR);
-        userRepository.save(u);
-        return userRepository.findAll();
+        user.setRole(Role.MODERATOR);
+        userRepository.save(user);
+        return user;
     }
 
     @Override
-    public List<User> updateToUser(long id) {
-        User u = userRepository.findById(id).orElseThrow(
+    public User updateToUser(long id) {
+        User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("user",
                         "Id", id));
-        u.setRole(Role.USER);
-        userRepository.save(u);
-        return userRepository.findAll();
+        user.setRole(Role.USER);
+        userRepository.save(user);
+        return user;
     }
+
+    @Override
+    public User getDetail(long userID) {
+        User user = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotExisted("user",
+                        "Id", userID));
+        return user;
+    }
+
+    @Override
+    public User updateBio(User user, long userID) {
+        User u = userRepository.findById(userID).orElseThrow(
+                () -> new ResourceNotExisted("user",
+                        "Id", userID));
+        u.setBio(user.getBio());
+        return u;
+    }
+
 
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
+
     @Override
-    public JwtAuthUserDetails getUserInfo(String username) {
-        User u = userRepository.findUserByEmail(username);
-        JwtAuthUserDetails detailObject = new JwtAuthUserDetails();
-        detailObject.setUsername(u.getEmail());
-        detailObject.setRole(u.getRole());
-        return detailObject;
+    public JwtAuthUserDetails getUserInfo(String email, Role role) {
+        JwtAuthUserDetails userDetails = new JwtAuthUserDetails();
+        userDetails.setUsername(email);
+        userDetails.setRole(role);
+        return userDetails;
     }
+        
 }

@@ -5,13 +5,15 @@ import com.example.forumapi.Dao.JwtAuthenticationResponse;
 import com.example.forumapi.Dao.SignUpRequest;
 import com.example.forumapi.Dao.SigninRequest;
 import com.example.forumapi.entity.Question;
+import com.example.forumapi.entity.Role;
 import com.example.forumapi.entity.User;
 import com.example.forumapi.service.AuthenticationService;
-import com.example.forumapi.service.JwtService;
 import com.example.forumapi.service.QuestionService;
 import com.example.forumapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,10 +37,23 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signin(signinRequest));
     }
 
-    @GetMapping("/userDetail/{username}")
-    public ResponseEntity<JwtAuthUserDetails> getUserInfo(@PathVariable String username){
-        return ResponseEntity.ok(userService.getUserInfo(username));
+    @GetMapping("/userDetail/")
+    public ResponseEntity<JwtAuthUserDetails> getUserInfo(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User jwtUser = (User) auth.getPrincipal();
+        String email = (jwtUser.getEmail());
+        Role role = jwtUser.getRole();
+        return ResponseEntity.ok(userService.getUserInfo(email, role));
     }
+
+    @GetMapping("/loggedinUserInfo")
+    ResponseEntity<User> getDetails(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User jwtUser = (User) auth.getPrincipal();
+        long userID = (jwtUser.getId());
+        return ResponseEntity.ok(userService.getDetail(userID));
+    }
+
 
     @GetMapping("/")
     public ResponseEntity<List<Question>> getQuestion(){
