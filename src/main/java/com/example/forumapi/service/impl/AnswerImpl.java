@@ -39,7 +39,7 @@ public class AnswerImpl implements AnswerService {
         ans.setContent(answer.getContent());
         ans.setDate(dateFormat);
         ans.setUser(userRepository.findById(userID).orElseThrow(
-                () -> new ResourceNotExisted("Answer Not exist","Id", userID)));
+                () -> new ResourceNotExisted("User Not exist","Id", userID)));
         ans.setQuestionId(questionID);
         ans.setReplies(replyList);
 
@@ -64,7 +64,7 @@ public class AnswerImpl implements AnswerService {
         reply.setDate(dateFormat);
         reply.setContent(rep.getContent());
         reply.setUser(userRepository.findById(userID).orElseThrow(
-                () -> new ResourceNotExisted("Reply Not exist","Id", userID)));
+                () -> new ResourceNotExisted("User Not exist","Id", userID)));
 
         parentAnswer.getReplies().add(reply);
 
