@@ -2,24 +2,24 @@
 
 ## Database Structure
 
-Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <be>
+Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <br>
 &emsp; Many to One Table (QuestionID, AnswerID)
-One to One (QuestionID, UserID)
+&emsp; One to One (QuestionID, UserID)
 
 Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}. <br>
-Many to One Table (AnswerID, ReplyID)
-One to One (AnswerID, UserID)
+&emsp; Many to One Table (AnswerID, ReplyID)
+&emsp; One to One (AnswerID, UserID)
 
 Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
-One to One (ReplyID, UserID)
+&emsp; One to One (ReplyID, UserID)
 
 User: FirstName, LastName, Email, Password, Role, Bio. <br>
  
 ## Acsses Level 
-api/auth/ - Pubic
-api/ADMIN/ - Admin
-api/USER/ - User
-api/MODERATOR/ - Moderator
+&emsp; api/auth/ for Pubic - / , /signin, /signup <br>
+&emsp; api/ADMIN/ for Admin - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
+&emsp; api/USER/ for User - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
+&emsp; api/MODERATOR/ for Moderator - /UpdateQuestion <br>
 
 ## ScreenShots
 
