@@ -1,48 +1,51 @@
-# Quorumify(Forum-API):  
+# Quorumify(Forum-API) Server :  
 
 ## Database Structure
 
-Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <br>
+> Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's - List of foreign Key}. <br>
 &emsp; Many to One Table (QuestionID, AnswerID)
-&emsp; One to One (QuestionID, UserID)
 
-Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}. <br>
+> Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's - List of foreign Key}. <br>
 &emsp; Many to One Table (AnswerID, ReplyID)
-&emsp; One to One (AnswerID, UserID)
 
-Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
-&emsp; One to One (ReplyID, UserID)
+> Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
 
-User: FirstName, LastName, Email, Password, Role, Bio. <br>
- 
+> User: FirstName, LastName, Email, Password, Role, Bio. <br>
+
 ## Role Based Accses Level 
-&emsp; Public:- api/auth/  - /, /signin, /signup <br>
-&emsp; Admin:- api/ADMIN/ - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
-&emsp; User:- api/USER/ - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
-&emsp; Moderator:- api/MODERATOR/ - /UpdateQuestion <br>
+> &emsp; Public:- api/auth  - /, /signin, /signup <br>
+
+> &emsp; Admin:- api/ADMIN - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
+
+> &emsp; User:- api/USER - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
+
+> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <br>
 
 ## ScreenShots
 
 <p float="left">
+Here are some Screenshots from Postman During Api testing
 
- GET: api/auth/ - Get all the Questions from Database
+ > GET: api/auth/ - Get all the Questions from Database
   <img src="Screenshots/Screenshot%202024-01-19%20133844.png" alt="-" width="90%"/>
 
-POST: api/auth/signin/ (email, password) - Provide JWT Token for Secure transaction 
+> POST: api/auth/signin/ (email, password) - Provide JWT Token for Secure transaction 
   <img src="Screenshots/Screenshot%202024-01-19%20135029.png" alt="-" width="90%"/>
 
-GET: api/auth/loggedinUserinfo - Gives Current User Info from Request Header
+> GET: api/auth/loggedinUserinfo - Gives Current User Info from Request Header
   <img src="Screenshots/Screenshot%202024-01-19%20135610.png" alt="-" width="90%"/>
 
-POST: api/user/postQuestion (content) - Upload Question in database and Create a Blank List of Answers, & taking User, Date, Id by it's own
+> POST: api/user/postQuestion (content) - Upload Question in database and Create a Blank List of Answers, & taking 
+> User, Date, Id by it's own
   <img src="Screenshots/Screenshot%202024-01-19%20135858.png" alt="FoodRunner Splash Screen" width="90%"/>
 
-POST: api/user/postAnswer/{Q_ID} (content) - Upload Answer in database and Create a Blank List of Reply, set Question_ID = Q_ID & taking User, Date, Id by it's own
+> POST: api/user/postAnswer/{Q_ID} (content) - Upload Answer in database and Create a Blank List of Reply, set 
+> Question_ID = Q_ID & taking User, Date, Id by it's own
   <img src="Screenshots/Screenshot%202024-01-19%20140857.png" alt="FoodRunner Splash Screen" width="90%"/>
   
-PUT: api/user/updateBio (bio)  Update User Bio
+> PUT: api/user/updateBio (bio)  Update User Bio
   <img src="Screenshots/Screenshot%202024-01-19%20141946.png" alt="FoodRunner Splash Screen" width="90%"/>
 
-DELETE: api/user/delete/QuestionByUser - Each user has Access to Delete Question Posted by him.
+> DELETE: api/user/delete/QuestionByUser - Each user has Access to Delete Question Posted by him.
   <img src="Screenshots/Screenshot%202024-01-19%20142401.png" alt="FoodRunner Splash Screen" width="90%"/>
 </p>
