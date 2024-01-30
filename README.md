@@ -2,8 +2,8 @@
 
 ## Database Structure
 
-Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <br>
-Many to One Table (QuestionID, AnswerID)
+Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <be>
+&emsp; Many to One Table (QuestionID, AnswerID)
 One to One (QuestionID, UserID)
 
 Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}. <br>
