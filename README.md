@@ -2,19 +2,19 @@
 
 ## Database Structure
 
-Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. 
+Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. <br>
 Many to One Table (QuestionID, AnswerID)
 One to One (QuestionID, UserID)
 
-Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}.
+Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}. <br>
 Many to One Table (AnswerID, ReplyID)
 One to One (AnswerID, UserID)
 
-Replies: ID, Content, Date, User{UserId-foreign Key}.
+Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
 One to One (ReplyID, UserID)
 
-User: FirstName, LastName, Email, Password, Role, Bio.
-
+User: FirstName, LastName, Email, Password, Role, Bio. <br>
+ 
 ## Acsses Level 
 api/auth/ - Pubic
 api/ADMIN/ - Admin
