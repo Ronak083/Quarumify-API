@@ -1,5 +1,21 @@
-Quorumify(Forum-API): Screen Shots 
+###Quorumify(Forum-API):  
 
+##Database Structure
+
+Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. 
+     Many to One Table (QuestionID, AnswerID)
+     One to One (QuestionID, UserID)
+
+Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's}.
+     Many to One Table (AnswerID, ReplyID)
+     One to One (AnswerID, UserID)
+
+Replies: ID, Content, Date, User{UserId-foreign Key}.
+     One to One (ReplyID, UserID)
+
+User: FirstName, LastName, Email, Password, Role.
+
+##ScreenShots
 
 <p float="left">
 
