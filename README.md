@@ -1,6 +1,6 @@
-###Quorumify(Forum-API):  
+# Quorumify(Forum-API):  
 
-##Database Structure
+## Database Structure
 
 Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's}. 
      Many to One Table (QuestionID, AnswerID)
@@ -15,7 +15,7 @@ Replies: ID, Content, Date, User{UserId-foreign Key}.
 
 User: FirstName, LastName, Email, Password, Role.
 
-##ScreenShots
+## ScreenShots
 
 <p float="left">
 
