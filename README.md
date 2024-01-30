@@ -16,10 +16,10 @@ Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
 User: FirstName, LastName, Email, Password, Role, Bio. <br>
  
 ## Acsses Level 
-&emsp; api/auth/ for Pubic - / , /signin, /signup <br>
-&emsp; api/ADMIN/ for Admin - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
-&emsp; api/USER/ for User - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
-&emsp; api/MODERATOR/ for Moderator - /UpdateQuestion <br>
+&emsp; Public api/auth/  - /, /signin, /signup <br>
+&emsp; Admin api/ADMIN/ - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
+&emsp; User api/USER/ - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
+&emsp; Moderator api/MODERATOR/ - /UpdateQuestion <br>
 
 ## ScreenShots
 
