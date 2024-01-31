@@ -1,7 +1,13 @@
 # Quorumify(Forum-API) Server :  
 
 ## Database Structure
-```c
+
+
+
+<table border="0">
+
+ <tr>
+    <td>
 > Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's - List of foreign Key}. <br>
 &emsp; Many to One Table (QuestionID, AnswerID)
 
@@ -11,12 +17,12 @@
 > Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
 
 > User: FirstName, LastName, Email, Password, Role, Bio. <br>
+    </td>
+    <td> 
+<img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" /></td>
+ </tr>
+</table>
 
-```
-
-```c
-<img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" />
-```
 ## Role Based Accses Level 
 > &emsp; Public:- api/auth  - /, /signin, /signup <br>
 
