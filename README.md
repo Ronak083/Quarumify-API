@@ -11,10 +11,15 @@
 
 ```c 
 > Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer.
->   {List of AnswerId's - List of foreign Key} -> Many to One Table (QuestionID, AnswerID)
+    {List of AnswerId's - List of foreign Key} 
+     -> Many to One Table (QuestionID, AnswerID)
+     
 > Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply.
->   {List of ReplyID's - List of foreign Key} -> Many to One Table (AnswerID, ReplyID)
+    {List of ReplyID's - List of foreign Key} 
+        -> Many to One Table (AnswerID, ReplyID)
+        
 > Replies: ID, Content, Date, User{UserId-foreign Key}. 
+
 > User: FirstName, LastName, Email, Password, Role, Bio. 
 ```
 
