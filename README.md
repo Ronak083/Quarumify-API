@@ -19,7 +19,13 @@
 
 > &emsp; User:- api/USER - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
 
-> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <br>
+> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <be>
+
+# Getting Started with Server 
+> Download the Zip file of [Quarumify-Server](https://github.com/Ronak083/Forum-API)
+> Clean and Install Maven before running the Application.
+> Run src/main/java/com/example/forumapi/ForumApiApplication.java as Application.
+> Run on Default port [localhost:8080](), So that it will run without any problem because React app is configured with localhost:8080 only.
 
 ## ScreenShots
 
