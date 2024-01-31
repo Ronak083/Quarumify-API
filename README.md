@@ -26,7 +26,7 @@
  </tr>
 </table>
 
-## Role Based Accses Level 
+## Role Based Access Level 
 
 > &emsp; Public:- api/auth  - /, /signin, /signup <br>
 
@@ -41,9 +41,9 @@
 > Download the Zip file of [Quarumify-Server](https://github.com/Ronak083/Forum-API)
 > Clean and Install Maven before running the Application.
 > Run src/main/java/com/example/forumapi/ForumApiApplication.java as Application.
-> Run on Default port [localhost:8080](), So that it will run without any problem because React app is configured with localhost:8080 only.
-For any Query Contact me at ronakgupta083@gmail.com
+> Run on Default port [localhost:8080], So that it will run without any problem because React app is configured with localhost:8080 only.
 ```
+For any Query Contact me at ronakgupta083@gmail.com
 
 ## ScreenShots
 
