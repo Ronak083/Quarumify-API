@@ -30,13 +30,13 @@
 
 ```c
 
-> &emsp; Public:- api/auth  - /, /signin, /signup <br>
+> Public:- api/auth  - /, /signin, /signup 
 
-> &emsp; Admin:- api/ADMIN - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
+> Admin:- api/ADMIN -  /updateUserToModerator, /updateModeratorToUser, /GetAllUser 
 
-> &emsp; User:- api/USER - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
+> User:- api/USER - /UpdateBio, /postQuestion, /postAnswer, /postReply, /deleteQuestion, /deleteAnswer, /deleteReply
 
-> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <br>
+> Moderator:- api/MODERATOR - /updateQuestionByMod, /deleteQuestionByMod
  ```
 
 # Getting Started with Server 
