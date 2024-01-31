@@ -6,19 +6,18 @@
 
 <table border="0">
 
- <tr>
+ <tr>    
     <td>
 
-> Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's - List of foreign Key}. <br>
-&emsp; Many to One Table (QuestionID, AnswerID)
+```c 
+> Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer.
+>   {List of AnswerId's - List of foreign Key} -> Many to One Table (QuestionID, AnswerID)
+> Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply.
+>   {List of ReplyID's - List of foreign Key} -> Many to One Table (AnswerID, ReplyID)
+> Replies: ID, Content, Date, User{UserId-foreign Key}. 
+> User: FirstName, LastName, Email, Password, Role, Bio. 
+```
 
-> Answer: ID, Content, Date, User{UserId-foreign Key}, List of Reply{List of ReplyID's - List of foreign Key}. <br>
-&emsp; Many to One Table (AnswerID, ReplyID)
-
-> Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
-
-> User: FirstName, LastName, Email, Password, Role, Bio. <br>
-  
 </td>
 
 <td> <img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" />
