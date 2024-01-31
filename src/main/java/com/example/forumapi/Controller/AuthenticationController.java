@@ -17,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/auth")
@@ -53,7 +52,6 @@ public class AuthenticationController {
         long userID = (jwtUser.getId());
         return ResponseEntity.ok(userService.getDetail(userID));
     }
-
 
     @GetMapping("/")
     public ResponseEntity<List<Question>> getQuestion(){

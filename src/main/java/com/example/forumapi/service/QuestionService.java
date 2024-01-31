@@ -8,9 +8,11 @@ public interface QuestionService {
     Question upload(Question question, long userID);
     List<Question> getQuestions();
 
-    String deleteQuestion(long qid);
+    String deleteQuestionByMod(long qid);
 
-    Question updateQuestion(Question que, long questionID);
+    Question updateQuestionByMod(Question que, long questionID);
 
-    String deleteQuestionbyUser(long qID, long userID);
+    String deleteQuestion(long qID, long userID);
+
+    Question updateQuestion(Question que, long id, long userID);
 }

@@ -16,6 +16,10 @@ public class ModeratorController {
     private final QuestionService questionService;
     @PutMapping("/updateQue/{id}")
     public ResponseEntity<Question> updateQ(@RequestBody Question que, @PathVariable String id){
-        return  ResponseEntity.ok(questionService.updateQuestion(que, Long.parseLong(id)));
+        return  ResponseEntity.ok(questionService.updateQuestionByMod(que, Long.parseLong(id)));
+    }
+    @DeleteMapping("/deleteQueByAdmin/{id}")
+    public ResponseEntity<String> deleteQ(@PathVariable String id){
+        return  ResponseEntity.ok(questionService.deleteQuestionByMod(Long.parseLong(id)));
     }
 }

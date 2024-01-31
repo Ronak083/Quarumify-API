@@ -22,7 +22,6 @@ import java.util.List;
 public class AnswerImpl implements AnswerService {
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
-    private final ReplyRepository replyRepository;
     private final UserRepository userRepository;
     List<Reply> replyList;
 
@@ -49,31 +48,10 @@ public class AnswerImpl implements AnswerService {
         return ans;
     }
 
-    @Override
-    public Reply uploadRep(Reply rep, long answerID, long userID) {
 
-        Answer parentAnswer = answerRepository.findById(answerID).orElseThrow(
-                () -> new ResourceNotExisted("Answer Not exist","Id", answerID));
-
-        Reply reply = new Reply();
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        String dateFormat = formatter.format(date);
-
-        reply.setAnswerId(answerID);
-        reply.setDate(dateFormat);
-        reply.setContent(rep.getContent());
-        reply.setUser(userRepository.findById(userID).orElseThrow(
-                () -> new ResourceNotExisted("User Not exist","Id", userID)));
-
-        parentAnswer.getReplies().add(reply);
-
-        replyRepository.save(reply);
-        return reply;
-    }
 
     @Override
-    public String deleteAnswerbyUser(long id, long userID) {
+    public String deleteAnswer(long id, long userID) {
         Answer ans = answerRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("answer Not exist",
                         "Id", id));
@@ -88,20 +66,19 @@ public class AnswerImpl implements AnswerService {
         return "User has Not access to delete this Answer";
     }
 
+
+
     @Override
-    public String deleteReplybyUser(long aID, long userID) {
-        Reply r = replyRepository.findById(aID).orElseThrow(
-                () -> new ResourceNotExisted("reply Not exist",
-                        "Id", aID));
-
-
-        Answer parentAnswer = answerRepository.findById(r.getAnswerId()).orElseThrow(
-                () -> new ResourceNotExisted("Answer Not exist","Id", r.getAnswerId()));
-        if(r.getUser().getId() == userID) {
-            parentAnswer.getReplies().remove(r);
-            replyRepository.deleteById(r.getId());
-            return "Reply Deleted Successfully by User";
+    public Answer updateAnswer(Answer answer, long id, long userID) {
+        Answer ans = answerRepository.findById(id).orElseThrow(
+                () -> new ResourceNotExisted("Answer Not exist",
+                        "Id", id));
+        if(ans.getUser().getId() == userID) {
+            ans.setContent(answer.getContent());
+            answerRepository.save(ans);
         }
-        return "User has Not access to delete this Reply";
+        return ans;
     }
+
+
 }

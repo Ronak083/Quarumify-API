@@ -3,7 +3,6 @@ package com.example.forumapi.service.impl;
 import com.example.forumapi.config.ResourceNotExisted;
 import com.example.forumapi.entity.Answer;
 import com.example.forumapi.entity.Question;
-import com.example.forumapi.repository.AnswerRepository;
 import com.example.forumapi.repository.QuestionRepository;
 import com.example.forumapi.repository.UserRepository;
 import com.example.forumapi.service.QuestionService;
@@ -21,7 +20,6 @@ import java.util.List;
 public class QuestionImpl implements QuestionService {
     private final QuestionRepository questionRepository;
     private final UserRepository userRepository;
-    private final AnswerRepository answerRepository;
     List<Answer> answersList;
 
     @Override
@@ -48,7 +46,7 @@ public class QuestionImpl implements QuestionService {
         return questionRepository.findAll();
     }
     @Override
-    public Question updateQuestion(Question que, long id) {
+    public Question updateQuestionByMod(Question que, long id) {
         Question question = questionRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("Question Not exist",
                         "Id", id));
@@ -59,16 +57,28 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public String deleteQuestion(long qid) {
+    public Question updateQuestion(Question que, long id, long userID) {
+        Question question = questionRepository.findById(id).orElseThrow(
+                () -> new ResourceNotExisted("Question Not exist",
+                        "Id", id));
+        if(question.getUser().getId() == userID) {
+            question.setContent(que.getContent());
+            questionRepository.save(question);
+        }
+        return question;
+    }
+
+    @Override
+    public String deleteQuestionByMod(long qid) {
         try {
             questionRepository.deleteById(qid);
         } catch (Exception e) {
             throw e;
         }
-        return "Question Deleted Successfully by Admin";
+        return "Question Deleted Successfully by Moderator";
     }
     @Override
-    public String deleteQuestionbyUser(long id, long userID) {
+    public String deleteQuestion(long id, long userID) {
         Question q = questionRepository.findById(id).orElseThrow(
                 () -> new ResourceNotExisted("Question Not exist",
                         "Id", id));

@@ -9,8 +9,9 @@ import java.util.List;
 public interface AnswerService {
 
     Answer uploadAns(Answer answer, long id, long userID);
-    Reply uploadRep(Reply reply, long id, long userID);
 
-    String deleteAnswerbyUser(long aid, long userID);
-    String deleteReplybyUser(long rid, long userID);
+    String deleteAnswer(long aid, long userID);
+
+    Answer updateAnswer(Answer answer, long l, long userID);
+
 }

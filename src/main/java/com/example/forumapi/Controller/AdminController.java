@@ -22,13 +22,7 @@ import java.util.List;
 public class AdminController {
 
     private final QuestionService questionService;
-    private final AnswerService answerService;
     private final UserService userService;
-
-    @DeleteMapping("/deleteQue/{id}")
-    public ResponseEntity<String> deleteQ(@PathVariable String id){
-        return  ResponseEntity.ok(questionService.deleteQuestion(Long.parseLong(id)));
-    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
