@@ -8,6 +8,7 @@
 
  <tr>
     <td>
+
 > Question: ID, Content, Date, User{UserId-foreign Key}, List of Answer{List of AnswerId's - List of foreign Key}. <br>
 &emsp; Many to One Table (QuestionID, AnswerID)
 
@@ -17,13 +18,16 @@
 > Replies: ID, Content, Date, User{UserId-foreign Key}. <br>
 
 > User: FirstName, LastName, Email, Password, Role, Bio. <br>
-    </td>
-    <td> 
-<img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" /></td>
+  
+</td>
+
+<td> <img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" />
+</td>
  </tr>
 </table>
 
 ## Role Based Accses Level 
+
 > &emsp; Public:- api/auth  - /, /signin, /signup <br>
 
 > &emsp; Admin:- api/ADMIN - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
@@ -33,11 +37,13 @@
 > &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <be>
 
 # Getting Started with Server 
+```c
 > Download the Zip file of [Quarumify-Server](https://github.com/Ronak083/Forum-API)
 > Clean and Install Maven before running the Application.
 > Run src/main/java/com/example/forumapi/ForumApiApplication.java as Application.
 > Run on Default port [localhost:8080](), So that it will run without any problem because React app is configured with localhost:8080 only.
 For any Query Contact me at ronakgupta083@gmail.com
+```
 
 ## ScreenShots
 
