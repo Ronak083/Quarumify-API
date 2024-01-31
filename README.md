@@ -25,7 +25,7 @@
 
 </td>
 
-<td> <img src="Screenshots/Screenshot%202024-01-31%20174326.png" alt="-" />
+<td> <img src="Screenshots/DB%20table.png" alt="-" />
 </td>
  </tr>
 </table>
