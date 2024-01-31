@@ -28,13 +28,16 @@
 
 ## Role Based Access Level 
 
+```c
+
 > &emsp; Public:- api/auth  - /, /signin, /signup <br>
 
 > &emsp; Admin:- api/ADMIN - /DeleteQuestion, /updateUserToModerator, /updateModeratorToUser, /GetAllUser <br>
 
 > &emsp; User:- api/USER - /postQuestion, /postAnswer, /postReply, /deleteQuestionByUser, /deleteAnswerByUser, /deleteReplyByUser, /UpdateBio<br>
 
-> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <be>
+> &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <br>
+ ```
 
 # Getting Started with Server 
 ```c
