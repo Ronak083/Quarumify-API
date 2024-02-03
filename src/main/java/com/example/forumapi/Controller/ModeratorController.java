@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -18,7 +17,7 @@ public class ModeratorController {
     public ResponseEntity<Question> updateQ(@RequestBody Question que, @PathVariable String id){
         return  ResponseEntity.ok(questionService.updateQuestionByMod(que, Long.parseLong(id)));
     }
-    @DeleteMapping("/deleteQueByAdmin/{id}")
+    @DeleteMapping("/deleteQue/{id}")
     public ResponseEntity<String> deleteQ(@PathVariable String id){
         return  ResponseEntity.ok(questionService.deleteQuestionByMod(Long.parseLong(id)));
     }

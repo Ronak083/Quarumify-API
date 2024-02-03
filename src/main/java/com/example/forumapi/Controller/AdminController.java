@@ -21,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final QuestionService questionService;
     private final UserService userService;
 
     @GetMapping("/users")
