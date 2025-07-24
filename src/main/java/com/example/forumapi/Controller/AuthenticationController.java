@@ -58,11 +58,3 @@ public class AuthenticationController {
         return ResponseEntity.ok(questionService.getQuestions());
     }
 }
-
-@RestController
-public class HealthController {
-    @GetMapping("/")
-    public String home() {
-        return "Forum API is live!";
-    }
-}
