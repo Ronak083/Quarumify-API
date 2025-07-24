@@ -1,0 +1,9 @@
+!target/*.jar
+.git
+*.md
+*.iml
+.idea/
+target/*.jar.original
+/Screenshot/
+
+
