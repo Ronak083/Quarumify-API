@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://quorumify-db.cyfweoq4qoj2.us-east-1.rds.amazonaws.com:3306/quorumify
+      SPRING_DATASOURCE_URL: jdbc:mysql://quorumify-db.ronakgupta.in:3306/quorumify
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: randompassword
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
